@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tectural</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&amp;family=Instrument+Serif:ital@1&amp;family=Righteous&amp;family=Lexend+Exa:wght@600;700&amp;display=swap">
+<style>
+html,body{background:#ffffff !important;color:#1f2d2b;margin:0}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+.t-page{--h1:48px;--lede:15.5px;--nav-h:40px;--btn-h:40px;--hero-btn-h:42px;--hero-gap:85px;--header-x:40px;--header-y:22px;--stats-x:72px;--stats-y:36px;font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(120% 90% at 85% 10%,#4a5c58 0%,#2e3c3a 45%,#1f2a29 100%);color:#ffffff;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;position:relative;overflow:hidden}
+.t-grain{display:none}
+.t-header{background:#1f2a29;border-bottom:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:var(--header-y) var(--header-x) 10px;position:relative;z-index:50}
+.t-logo{justify-self:start;font-family:"Lexend Exa","Inter",sans-serif;font-weight:700;font-size:28px;line-height:1;letter-spacing:-.02em;color:#d6e4e0;letter-spacing:.01em;text-transform:lowercase;position:relative;display:inline-block;padding:8px 4px}
+.t-logo:hover,.t-logo:focus-visible{color:#d6e4e0}
+.t-logo-img{display:block;height:24px;width:auto}
+@media (max-width:560px){.t-logo-img{height:20px}}
+.t-leaves{position:absolute;left:-20px;right:-20px;top:-30px;height:170px;pointer-events:none;background:transparent;overflow:visible}
+.t-leaf{position:absolute;top:0;left:var(--x);width:var(--s);height:var(--s);color:var(--c);opacity:0;filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+.t-leaf svg{width:100%;height:100%;display:block}
+.t-logo:hover .t-leaf,.t-logo:focus-visible .t-leaf{animation:t-fall var(--du) cubic-bezier(.45,.05,.55,.95) var(--dl) infinite}
+@keyframes t-fall{0%{opacity:0;transform:translate(0,0) rotate(0deg)}10%{opacity:1}30%{transform:translate(var(--sw),45px) rotate(calc(var(--r) * .35)) rotateX(30deg)}55%{transform:translate(calc(var(--sw) * -1),90px) rotate(calc(var(--r) * .65)) rotateX(-20deg)}80%{opacity:.9}100%{opacity:0;transform:translate(var(--sw),150px) rotate(var(--r))}}
+.t-nav{display:flex;align-items:center;gap:8px;justify-self:center;flex-wrap:wrap;justify-content:center}
+@media (max-width:1100px){.t-header{grid-template-columns:1fr auto;row-gap:12px}.t-nav{grid-column:1/-1;grid-row:2;justify-self:stretch}}
+@media (max-width:560px){.t-pill{height:36px;padding:0 12px;font-size:13px}}
+.t-pill{position:relative;overflow:hidden;display:inline-flex;align-items:center;height:var(--nav-h);padding:0 18px;border-radius:7px;border:1px solid rgba(47,93,90,.28);background:linear-gradient(105deg,#ffffff 0%,#f3f6f5 55%,#e6eeec 100%);color:#1b3634;font-size:14px;letter-spacing:-.01em;white-space:nowrap;transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+.t-pill::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.9) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.t-pill:hover{border-color:#2f5d5a;background:linear-gradient(105deg,#ffffff 0%,#e6eeec 45%,#d3e1de 100%);box-shadow:0 0 18px rgba(47,93,90,.18)}
+.t-pill:hover::before{transform:translateX(120%)}
+.t-btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;height:var(--btn-h);padding:0 16px;border-radius:6px;font-size:13.5px;font-weight:500;letter-spacing:-.02em;line-height:1;white-space:nowrap;cursor:pointer;transition:background .35s,border-color .35s,box-shadow .35s,color .35s}
+.t-btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.45) 48%,transparent 76%);transform:translateX(-130%);transition:transform .65s ease}
+.t-btn:hover::after{transform:translateX(130%)}
+.t-solid{background:linear-gradient(180deg,#E6B444 0%,#DCA93A 55%,#cf9c2e 100%);color:#1f2a29;border:1px solid #DCA93A;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px rgba(220,169,58,.25)}
+.t-solid:hover{color:#1f2a29;background:linear-gradient(180deg,#DCA93A 0%,#cf9c2e 45%,#8a6414 100%);border-color:#8a6414;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 24px rgba(220,169,58,.4),0 8px 18px rgba(220,169,58,.25)}
+.t-ghost{background:transparent;color:#ffffff;border:1.5px solid rgba(255,255,255,.75)}
+.t-ghost:hover{color:#ffffff;background:rgba(255,255,255,.08);border-color:#ffffff;box-shadow:none}
+.t-cta{justify-self:end}
+.t-hero{display:flex;align-items:flex-end;justify-content:center;padding:8px 24px var(--hero-gap)}
+.t-copy{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;width:100%}
+.t-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;padding:9px 15px;border-radius:5px;background:linear-gradient(90deg,#2f5d5a 0%,#24484a 60%,#1b3634 100%);color:#ffffff;font-size:12.5px;letter-spacing:-.01em}
+.t-star{fill:#ffffff;filter:drop-shadow(0 0 3px rgba(255,255,255,.6));animation:t-star .9s cubic-bezier(.16,1,.3,1) .28s both}
+.t-h1{margin:0;display:flex;flex-direction:column;align-items:center;font-size:var(--h1);font-weight:500;letter-spacing:-.045em;line-height:1.12}
+.t-line{display:block;overflow:hidden;padding:.06em .15em .14em}
+.t-line > span{display:inline-block}
+.t-h1 em{font-family:"Instrument Serif","Times New Roman",serif;font-style:italic;font-weight:400;font-size:1.08em;letter-spacing:-.03em;color:#E6B444;animation:t-em 1.2s ease .72s both}
+.t-lede{max-width:470px;margin:18px 0 0;color:#dfe6e4;font-size:var(--lede);line-height:1.55;letter-spacing:-.015em}
+.t-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+.t-actions .t-btn{height:var(--hero-btn-h);padding:0 18px}
+.t-stats{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--stats-x) var(--stats-y);color:#dfe6e4}
+.t-stat{display:inline-flex;align-items:center;gap:14px;font-size:13.5px;letter-spacing:-.015em;white-space:nowrap}
+.ap{animation-duration:1.05s;animation-fill-mode:both;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+.ap-scale{animation-name:t-scale}.ap-soft{animation-name:t-soft}.ap-mask{animation-name:t-mask}.ap-pop{animation-name:t-pop}.ap-btn{animation-name:t-btnin}.ap-side{animation-name:t-side}.ap-stat{animation-name:t-stat}
+@keyframes t-scale{from{opacity:0;transform:scale(.84)}}
+@keyframes t-soft{from{opacity:0;transform:translateY(14px)}}
+@keyframes t-mask{from{opacity:0;transform:translateY(40%)}}
+@keyframes t-pop{0%{opacity:0;transform:scale(.9)}70%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes t-btnin{from{opacity:0;transform:translateY(18px) scale(.94)}}
+@keyframes t-side{from{opacity:0;transform:translateX(22px)}}
+@keyframes t-stat{from{opacity:0;transform:translateY(20px)}}
+@keyframes t-star{0%{transform:scale(.2) rotate(-50deg)}65%{transform:scale(1.2) rotate(8deg)}100%{transform:none}}
+@keyframes t-em{from{opacity:.35;filter:blur(4px)}}
+@media (min-width:1600px){.t-page{--h1:64px;--lede:18px;--nav-h:44px;--btn-h:44px;--hero-btn-h:48px;--header-x:64px;--header-y:28px;--stats-x:96px;--stats-y:44px}.t-copy{max-width:980px}.t-lede{max-width:540px}}
+@media (min-width:1920px){.t-page{--h1:76px;--lede:20px;--nav-h:48px;--btn-h:48px;--hero-btn-h:52px;--header-x:80px;--stats-x:120px}}
+@media (min-width:901px) and (max-width:1279px){.t-page{--h1:42px;--lede:15px;--nav-h:36px;--btn-h:38px;--hero-btn-h:40px;--hero-gap:64px;--header-x:28px;--header-y:16px;--stats-x:28px}}
+@media (min-width:901px) and (max-height:720px){.t-page{--h1:34px;--hero-gap:32px;--stats-y:18px}}
+@media (max-width:900px){.t-page{--h1:36px;--lede:16.5px;--hero-gap:36px;--header-x:18px;--stats-x:20px;--stats-y:28px;overflow:visible}.t-header{grid-template-columns:1fr auto;gap:8px}.t-stats{flex-direction:column;gap:16px}.t-stat{white-space:normal}.t-hero{padding:20px 20px 64px}}
+@media (max-width:560px){.t-page{--h1:34px;--lede:16px}.t-actions{flex-direction:column;width:100%}.t-actions .t-btn{width:100%}}
+.s-wrap{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:#1f2d2b;background:#fff}
+.s-sec{padding:96px 24px;scroll-margin-top:20px}
+.s-in{max-width:1180px;margin:0 auto}
+.s-alt{background:linear-gradient(180deg,#f5f7f6 0%,#edf2f0 100%)}
+.s-eyebrow{display:inline-block;margin:0 0 14px;padding:6px 12px;border-radius:5px;background:#e6eeec;color:#1b3634;font-size:12.5px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.s-h2{margin:0;font-size:clamp(30px,3.4vw,44px);font-weight:500;letter-spacing:-.04em;line-height:1.12}
+.s-h2 em{font-family:"Instrument Serif","Times New Roman",serif;font-style:italic;font-weight:400;color:#2f5d5a;letter-spacing:-.02em}
+.s-p{margin:16px 0 0;color:#55625f;font-size:17px;line-height:1.65;letter-spacing:-.01em}
+.s-about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.s-mission{position:relative;padding:40px;border-radius:16px;background:linear-gradient(150deg,#2f5d5a 0%,#24484a 60%,#1b3634 100%);color:#fff;box-shadow:0 24px 48px rgba(36,72,74,.22)}
+.s-mission h3{margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#d3e1de}
+.s-mission p{margin:0;font-size:22px;line-height:1.45;letter-spacing:-.02em}
+.s-mission-bar{display:block;width:44px;height:4px;margin-top:28px;border-radius:2px;background:#DCA93A}
+.s-head{max-width:640px;margin:0 auto 48px;text-align:center}
+.s-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.s-card{padding:30px;border-radius:14px;background:#fff;border:1px solid rgba(47,93,90,.16);box-shadow:0 8px 24px rgba(11,37,69,.06);transition:border-color .3s,box-shadow .3s,transform .3s}
+.s-card:hover{border-color:#2f5d5a;box-shadow:0 14px 30px rgba(47,93,90,.14);transform:translateY(-3px)}
+.s-card.s-wide{grid-column:span 3;display:grid;grid-template-columns:auto 1fr;gap:20px 28px;align-items:start;background:linear-gradient(120deg,#fff 0%,#f5f7f6 100%)}
+.s-ico{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:#e6eeec;color:#24484a;margin-bottom:18px}
+.s-wide .s-ico{margin:0}
+.s-card h3{margin:0 0 10px;font-size:20px;font-weight:500;letter-spacing:-.03em}
+.s-card p{margin:0;color:#55625f;font-size:15.5px;line-height:1.6}
+.s-values{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.s-chip{padding:7px 14px;border-radius:999px;border:1px solid rgba(220,169,58,.35);color:#8a6414;background:#fbf4e2;font-size:13.5px;font-weight:500}
+.s-cta{padding:72px 24px;text-align:center;background:#1f2d2b;color:#fff}
+.s-cta .s-h2 em{color:#E6B444}
+.s-cta .s-p{color:#b9c6c3;max-width:560px;margin-left:auto;margin-right:auto}
+.s-cta .t-actions{margin-top:30px}
+.s-foot{padding:28px 24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;max-width:1180px;margin:0 auto;color:#55625f;font-size:13.5px}
+.s-foot strong{font-family:"Righteous",sans-serif;font-weight:400;font-size:22px;color:#24484a}
+@media (max-width:900px){.s-sec{padding:64px 20px}.s-about{grid-template-columns:1fr;gap:32px}.s-grid{grid-template-columns:1fr}.s-card.s-wide{grid-column:auto;grid-template-columns:1fr}.s-mission{padding:28px}.s-mission p{font-size:19px}}
+.s-points{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.s-points li{position:relative;padding-left:24px;color:#3c4a47;font-size:15.5px}
+.s-points li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;background:#2f5d5a}
+.s-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.s-fact{padding:24px;border-radius:14px;background:#fff;border:1px solid rgba(47,93,90,.16);box-shadow:0 8px 24px rgba(11,37,69,.06)}
+.s-fact.s-span{grid-column:span 3;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;background:linear-gradient(150deg,#2f5d5a,#24484a 60%,#1b3634);color:#fff;border:0}
+.s-fact strong{display:block;color:#1f2d2b;font-size:28px;font-weight:500;letter-spacing:-.04em}
+.s-fact span{display:block;margin-top:4px;color:#55625f;font-size:14px}
+.s-fact.s-span strong{color:#fff;font-size:20px}.s-fact.s-span span{color:#d3e1de}
+.s-vm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.s-vm .s-mission{padding:36px}
+.s-vm .s-mission.s-light{background:#fff;color:#1f2d2b;border:1px solid rgba(47,93,90,.2);box-shadow:0 8px 24px rgba(11,37,69,.06)}
+.s-vm .s-mission.s-light h3{color:#24484a}
+.s-pillars{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}
+.s-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;position:relative}
+.s-step{position:relative;padding:28px 24px 26px;border-radius:14px;background:#fff;border:1px solid rgba(47,93,90,.16);box-shadow:0 8px 24px rgba(11,37,69,.06)}
+.s-step::before{content:"";position:absolute;top:-1px;left:24px;right:24px;height:3px;border-radius:0 0 3px 3px;background:#2f5d5a}
+.s-step:last-child::before{background:#DCA93A}
+.s-year{display:inline-block;margin-bottom:12px;color:#DCA93A;font-size:13px;font-weight:600;letter-spacing:.06em}
+.s-step h3{margin:0 0 8px;font-size:19px;font-weight:500;letter-spacing:-.03em}
+.s-step p{margin:0;color:#55625f;font-size:14.5px;line-height:1.6}
+.s-note{max-width:760px;margin:36px auto 0;text-align:center;color:#3c4a47;font-size:16.5px;line-height:1.6}
+.s-figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:28px}
+.s-fig{padding:22px;border-radius:14px;text-align:center;background:#f5f7f6;border:1px solid rgba(47,93,90,.16)}
+.s-fig strong{display:block;color:#24484a;font-size:32px;font-weight:500;letter-spacing:-.04em}
+.s-fig span{display:block;margin-top:4px;color:#55625f;font-size:13.5px}
+.s-contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;text-align:left;align-items:start}
+.s-clist{display:grid;gap:12px}
+.s-citem{padding:18px 20px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.s-citem small{display:block;margin-bottom:4px;color:#E6B444;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.s-citem a,.s-citem span{color:#fff;font-size:16px}
+.s-citem a:hover{color:#E6B444}
+@media (max-width:900px){.s-facts{grid-template-columns:1fr}.s-fact.s-span{grid-column:auto}.s-vm,.s-contact{grid-template-columns:1fr}.s-journey,.s-figs{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.s-journey,.s-figs{grid-template-columns:1fr}}
+.t-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+.t-video-shade{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,26,25,.35) 0%,rgba(18,26,25,.45) 45%,rgba(18,26,25,.85) 100%)}
+.t-hero,.t-stats{position:relative;z-index:2}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+.t-header .t-nav{gap:2px;padding:5px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);flex-wrap:nowrap}
+.t-header .t-nav .t-pill{height:38px;padding:0 18px;border:0;border-radius:999px;background:transparent;box-shadow:none;color:#f2f5f4;font-size:14.5px;font-weight:500;letter-spacing:-.01em}
+.t-header .t-nav .t-pill::before{display:none}
+.t-header .t-nav .t-pill:hover{background:rgba(255,255,255,.1);color:#ffffff;box-shadow:none}
+.t-header .t-nav .t-pill.is-current{background:rgba(230,180,68,.16);color:#E6B444;box-shadow:none}
+.t-header .t-btn{height:44px;padding:0 22px;border-radius:999px;font-size:14.5px}
+@media (max-width:1100px){.t-header .t-nav{justify-self:center;flex-wrap:wrap;border-radius:22px}}
+@media (max-width:560px){.t-header .t-nav .t-pill{height:34px;padding:0 12px;font-size:13.5px}}
+.t-page > .t-header{background:transparent;border-bottom:0;position:relative;z-index:50}
+.t-video-shade{background:linear-gradient(180deg,rgba(18,26,25,.6) 0%,rgba(18,26,25,.25) 18%,rgba(18,26,25,.45) 50%,rgba(18,26,25,.85) 100%)}
+</style>
+</head>
+<body style="background:#fff;color:#1f2d2b">
+<div class="s-wrap">
+<div class="t-page" id="top">
+<video class="t-video" src="assets/hero.mp4" autoplay="" muted="" loop="" playsinline="" aria-hidden="true"></video>
+<div class="t-video-shade" aria-hidden="true"></div>
+<div class="t-grain" aria-hidden="true"></div>
+<header class="t-header">
+<a class="t-logo ap ap-scale" href="#top" style="animation-delay: 0.08s"><img class="t-logo-img" src="assets/logo-light.png" alt="Tectural"><span class="t-leaves" aria-hidden="true"><span class="t-leaf" style="--x: 4%; --s: 18px; --c: #2e7d32; --du: 2.6s; --dl: 0s; --sw: 12px; --r: 260deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 16%; --s: 14px; --c: #7cb342; --du: 3.1s; --dl: .5s; --sw: -14px; --r: -300deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 28%; --s: 20px; --c: #1b5e20; --du: 2.8s; --dl: .2s; --sw: 16px; --r: 220deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 40%; --s: 15px; --c: #558b2f; --du: 3.4s; --dl: 1.1s; --sw: -10px; --r: 340deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 52%; --s: 22px; --c: #43a047; --du: 2.9s; --dl: .7s; --sw: 18px; --r: -240deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 63%; --s: 13px; --c: #9ccc65; --du: 2.5s; --dl: 1.4s; --sw: -12px; --r: 280deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 74%; --s: 19px; --c: #388e3c; --du: 3.2s; --dl: .3s; --sw: 14px; --r: -320deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 86%; --s: 16px; --c: #689f38; --du: 2.7s; --dl: .9s; --sw: -16px; --r: 250deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 34%; --s: 12px; --c: #33691e; --du: 3.6s; --dl: 1.7s; --sw: 10px; --r: 360deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span><span class="t-leaf" style="--x: 92%; --s: 14px; --c: #2e7d32; --du: 3s; --dl: 1.9s; --sw: -8px; --r: -200deg"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.6 3.6 2.4-1-.6 3.8 3.4-1.4-1.2 3 3.4.6-3 2.6 1 1.4-4.4-.4.4 3.2-3.2-1.8-.8 5.4h-1.2l-.8-5.4-3.2 1.8.4-3.2-4.4.4 1-1.4-3-2.6 3.4-.6-1.2-3 3.4 1.4-.6-3.8 2.4 1z"></path></svg></span></span></a>
+<nav class="t-nav" aria-label="Primary">
+<a class="t-pill ap ap-scale" href="#about" style="animation-delay: 0.16s">About Us</a>
+<a class="t-pill ap ap-soft" href="team.html" style="animation-delay: 0.28s">Our Team</a>
+<a class="t-pill ap ap-scale" href="projects.html" style="animation-delay: 0.4s">Projects</a>
+<a class="t-pill ap ap-scale" href="services.html" style="animation-delay: 0.46s">Services</a>
+</nav>
+<a class="t-btn t-solid t-cta ap ap-scale" href="contact.html" style="animation-delay: 0.34s">Contact Us</a>
+</header>
+<main class="t-hero">
+<div class="t-copy">
+<h1 class="t-h1">
+<span class="t-line"><span class="ap ap-mask" style="animation-delay: 0.42s">Your EPC partner for a <em>cleaner,</em></span></span>
+<span class="t-line"><span class="ap ap-mask" style="animation-delay: 0.62s">brighter tomorrow.</span></span>
+</h1>
+<div class="t-actions">
+<a class="t-btn t-solid ap ap-btn" href="projects.html" style="animation-delay: 0.96s">Explore Our Projects</a>
+<a class="t-btn t-ghost ap ap-side" href="contact.html" style="animation-delay: 1.1s">Contact Us</a>
+</div>
+</div>
+</main>
+<footer class="t-stats">
+<div class="t-stat ap ap-stat" style="animation-delay: 1.12s">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="g1" x1="3" y1="2" x2="14" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E6B444"></stop><stop offset="1" stop-color="#2f5d5a"></stop></linearGradient><linearGradient id="g2" x1="13" y1="2" x2="24" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#24484a"></stop><stop offset="1" stop-color="#5a8a85"></stop></linearGradient></defs><rect x="3.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#g1)"></rect><rect x="13.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#g2)"></rect><rect x="9.2" y="10.9" width="5.6" height="2.2" rx="1.1" fill="#DCA93A"></rect></svg>
+<span>200+ MWp track record</span>
+</div>
+<div class="t-stat ap ap-stat" style="animation-delay: 1.28s">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.4" y="2.4" width="19.2" height="19.2" rx="6.2" fill="#2f5d5a"></rect><path d="M12 7.1v7.4M8.15 12.35L12 16.2l3.85-3.85" stroke="#fff" stroke-width="1.85" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span>Andhra Pradesh · Telangana · Karnataka</span>
+</div>
+<div class="t-stat ap ap-stat" style="animation-delay: 1.44s">
+<svg width="38" height="21" viewBox="0 0 40 22" aria-hidden="true"><circle cx="10.2" cy="11" r="9.2" fill="#24484a"></circle><ellipse cx="10.2" cy="12.1" rx="4.15" ry="3.7" fill="#f4f4f4"></ellipse><circle cx="8.8" cy="11.8" r=".7" fill="#1a1a1a"></circle><circle cx="11.6" cy="11.8" r=".7" fill="#1a1a1a"></circle><circle cx="20.2" cy="11" r="9.2" fill="#e6eeec" stroke="#fff" stroke-width="1"></circle><circle cx="17.8" cy="9.8" r="1.7" fill="#111"></circle><circle cx="22.6" cy="9.8" r="1.7" fill="#111"></circle><path d="M17.4 14.2q2.8 2.4 5.6 0" stroke="#111" stroke-width="1.2" fill="none" stroke-linecap="round"></path><circle cx="30.2" cy="11" r="9.2" fill="#DCA93A"></circle><text x="30.2" y="15.1" font-size="12.5" font-weight="700" font-family="Inter,sans-serif" text-anchor="middle" fill="#fff">t</text></svg>
+<span>Hyderabad HQ · Vijayawada regional office</span>
+</div>
+</footer>
+</div>
+
+<section class="s-sec" id="about">
+<div class="s-in s-about">
+<div>
+<span class="s-eyebrow">About Us</span>
+<h2 class="s-h2">Building reliable <em>solar infrastructure</em></h2>
+<p class="s-p">Tectural Energy LLP is a specialist utility-scale solar EPC organisation headquartered in Hyderabad, with a regional office in Vijayawada. We engineer, procure and build solar projects for IPPs, developers and captive industrial groups across India.</p>
+<ul class="s-points"><li>Utility-scale, ground-mounted solar EPC</li><li>Engineering-led, disciplined execution</li><li>Serving IPPs, developers and captive industrial customers</li></ul>
+</div>
+<div class="s-facts">
+<div class="s-fact"><strong>200+ MWp</strong><span>Track record</span></div>
+<div class="s-fact"><strong>3 States</strong><span>AP · TG · KA</span></div>
+<div class="s-fact"><strong>2 Offices</strong><span>Hyderabad · Vijayawada</span></div>
+<div class="s-fact s-span"><strong>Engineering | Execution | Reliable Results</strong><span>Head office: Hyderabad · Regional office: Vijayawada</span></div>
+</div>
+</div>
+</section>
+
+<section class="s-sec s-alt" id="vision">
+<div class="s-in">
+<div class="s-head">
+<span class="s-eyebrow">Vision &amp; Mission</span>
+<h2 class="s-h2">Our purpose and <em>commitment</em></h2>
+</div>
+<div class="s-vm">
+<div class="s-mission">
+<h3>Our Vision</h3>
+<p>To be a trusted name in utility-scale solar EPC, recognised for engineering excellence, dependable execution and lasting client value.</p>
+<span class="s-mission-bar"></span>
+</div>
+<div class="s-mission s-light">
+<h3>Our Mission</h3>
+<p>To deliver reliable solar infrastructure by combining technical expertise, disciplined execution and commercial accountability, helping our clients build with confidence.</p>
+<span class="s-mission-bar"></span>
+</div>
+</div>
+<div class="s-pillars"><span class="s-chip">Technical expertise</span><span class="s-chip">Disciplined execution</span><span class="s-chip">Commercial accountability</span></div>
+</div>
+</section>
+
+<section class="s-sec" id="values">
+<div class="s-in">
+<div class="s-head">
+<span class="s-eyebrow">Core Values</span>
+<h2 class="s-h2">What we <em>stand for</em></h2>
+</div>
+<div class="s-grid">
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"></path></svg></div><h3>Engineering Excellence</h3><p>Technical precision in every project.</p></article>
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4M8 15l2.5 2.5L16 13"></path></svg></div><h3>Execution Discipline</h3><p>Structured planning and on-time delivery.</p></article>
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><h3>Quality &amp; Safety</h3><p>Uncompromising standards at every stage.</p></article>
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg></div><h3>Integrity &amp; Accountability</h3><p>Ownership and transparency in all our commitments.</p></article>
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 20c.7-3.3 3-5 6-5s5.3 1.7 6 5M15 15.2c2.6-.3 4.6 1.2 5.2 4.3"></path></svg></div><h3>Client Partnership</h3><p>Long-term relationships built on trust and responsiveness.</p></article>
+<article class="s-card"><div class="s-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6 4 4 6-7"></path><path d="M15 8h5v5"></path></svg></div><h3>Continuous Improvement</h3><p>Better methods and innovative solutions to deliver greater value.</p></article>
+</div>
+</div>
+</section>
+
+<section class="s-sec s-alt" id="journey">
+<div class="s-in">
+<div class="s-head">
+<span class="s-eyebrow">Our Journey</span>
+<h2 class="s-h2">From a shared vision to a <em>growing impact</em></h2>
+</div>
+<div class="s-journey">
+<article class="s-step"><span class="s-year">2023</span><h3>Foundation</h3><p>Established Tectural Energy LLP with a clear focus on utility-scale solar EPC.</p></article>
+<article class="s-step"><span class="s-year">2023–24</span><h3>Early Projects</h3><p>Executed our initial projects and built strong execution and supply-chain partnerships.</p></article>
+<article class="s-step"><span class="s-year">2024–25</span><h3>Scaling Up</h3><p>Delivered multiple projects across states, strengthening our reputation as a reliable EPC partner.</p></article>
+<article class="s-step"><span class="s-year">2025–26</span><h3>Larger Portfolio</h3><p>Delivered over 100 MWp of projects and expanded into larger utility-scale developments.</p></article>
+</div>
+<p class="s-note">In just two and a half years, we have built a meaningful project portfolio through engineering expertise, strong client partnerships and disciplined execution.</p>
+<div class="s-figs">
+<div class="s-fig"><strong>137 MWp</strong><span>Commissioned</span></div>
+<div class="s-fig"><strong>78 MWp</strong><span>Under execution</span></div>
+<div class="s-fig"><strong>40 MWp</strong><span>Under discussion</span></div>
+<div class="s-fig"><strong>255 MWp</strong><span>Portfolio &amp; pipeline</span></div>
+</div>
+</div>
+</section>
+
+<footer class="s-foot">
+<img src="assets/logo-teal.png" alt="Tectural" style="height: 22px; width: auto; display: block">
+<span>© Tectural Energy LLP · Specialist Utility-Scale Solar EPC</span>
+</footer>
+</div>
+</body>
+</html>
